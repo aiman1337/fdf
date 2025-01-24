@@ -10,7 +10,7 @@ MLX_DIR        = minilibx_macos
 MLX            = $(MLX_DIR)/libmlx.a
 
 # Sources and objects
-SRCS           = fdf.c ft_atoi_hex.c \
+SRCS           = fdf.c ft_atoi_hex.c ft_keypress.c ft_drawing.c ft_fill_map.c\
                  $(GNL_DIR)/get_next_line.c \
                  $(GNL_DIR)/get_next_line_utils.c
 OBJS           = $(SRCS:.c=.o)
