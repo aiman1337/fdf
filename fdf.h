@@ -6,13 +6,12 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:03 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/24 13:53:32 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/24 17:31:59 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line/get_next_line.h"
 #include "minilibx_macos/mlx.h"
-#include "libft/libft.h"
+#include "get_next_line.h"
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -67,7 +66,7 @@ void	draw_line_to_image(char *data, t_p f, t_p s, int color, int size_line, int 
 t_p		project(int x, int y, int z, t_map *map);
 void	draw_map(t_map *map);
 int		handle_keypress(int keycode, t_map *map);
-int		close_window(void *param);
+int		close_window(void);
 int		ft_atoi_hex(const char *str);
 
 void    handle_projection(int keycode, t_map *map);
@@ -79,3 +78,9 @@ int 	handle_keypress(int keycode, t_map *map);
 void    draw_map(t_map *map);
 
 void    ft_fill_matrix(t_map *fdf, char *filename);
+
+int	ft_atoi(const char *str);
+int	ft_isdigit(int x);
+void	*ft_memset(void *s, int c, size_t n);
+char	**ft_split(char const *s, char c);
+int	ft_count_words(char const *str, char c);

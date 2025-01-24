@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:52:40 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/24 13:53:05 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/24 15:33:21 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void allocate_points(t_map *fdf)
 
     fdf->point = malloc(sizeof(t_point *) * fdf->height);
     if (!fdf->point)
-        return;
+        return ;
     i = 0;
     while (i < fdf->height)
     {

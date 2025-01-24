@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:11:09 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/24 13:36:38 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/24 16:22:39 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,15 @@ void    handle_moves(int keycode, t_map *map)
 
 int handle_keypress(int keycode, t_map *map)
 {
-    if (keycode == 53) // Check if the ESC key is pressed
-        exit(0); // Exit the program
+    if (keycode == 53)
+    {
+        system("leaks fdf");
+        exit(0);
+    }
     handle_projection(keycode, map);
     handle_rotation(keycode, map);
     handle_zoom(keycode, map);
     handle_moves(keycode, map);
-    // Redraw the map after changing zoom
     draw_map(map);
-
     return (0);
 }

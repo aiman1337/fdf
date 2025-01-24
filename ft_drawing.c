@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:39:50 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/24 13:40:26 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/24 16:41:25 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ void    draw_line_to_image(char *data, t_p f, t_p s, int color, int size_line, i
         if (f.x == s.x && f.y == s.y)
             break;
         int e2 = 2 * err;
-        if (e2 > -dy) {
+        if (e2 > -dy)
+        {
             err -= dy;
             f.x += sx;
         }
-        if (e2 < dx) {
+        if (e2 < dx)
+        {
             err += dx;
             f.y += sy;
         }
