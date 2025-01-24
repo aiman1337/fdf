@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:52:40 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/24 15:33:21 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/24 20:06:15 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 static void allocate_points(t_map *fdf)
 {
-    int i;
+	int i;
 
-    fdf->point = malloc(sizeof(t_point *) * fdf->height);
-    if (!fdf->point)
-        return ;
-    i = 0;
-    while (i < fdf->height)
-    {
-        fdf->point[i] = malloc(sizeof(t_point) * fdf->width);
-        i++;
-    }
+	fdf->point = malloc(sizeof(t_point *) * fdf->height);
+	if (!fdf->point)
+		exit(EXIT_FAILURE);
+	i = 0;
+	while (i < fdf->height)
+	{
+		fdf->point[i] = malloc(sizeof(t_point) * fdf->width);
+		i++;
+	}
 }
 
 static void parse_value(t_point *point, char *value)
 {
-    char *coordinate;
-    char *color;
+	char	*coordinate;
+	char	*color;
 
-    if (ft_strchr(value, ','))
+	if (ft_strchr(value, ','))
     {
         coordinate = ft_substr(value, 0, ft_strlen(value) - ft_strlen(ft_strchr(value, ',')));
         color = ft_substr(value, ft_strlen(coordinate) + 1, ft_strlen(value) - ft_strlen(coordinate) - 1);

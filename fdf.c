@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:24 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/24 17:25:52 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/24 20:35:14 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ int	close_window(void)
 	exit(0);
 }
 
-void	put_pixel_to_image(char *data, int x, int y, int color, int size_line, int bpp)
+void	put_pixel(char *data, int x, int y, int color, int size_line, int bpp)
 {
+	int	offset;
+
 	if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
 	{
-		int offset = (y * size_line) + (x * (bpp / 8));
+		offset = (y * size_line) + (x * (bpp / 8));
 		*(int *)(data + offset) = color;
 	}
 }
@@ -70,30 +72,32 @@ void	map_init(t_map *fdf_map, char *argv)
 {
 	fdf_map->height = get_map_height(argv);
 	fdf_map->width = get_map_width(argv);
-	fdf_map->zoom = 20;
-	fdf_map->x_offset = 0;
-	fdf_map->y_offset = 0;
 	fdf_map->rotation_x = 1;
 	fdf_map->rotation_y = 1;
 	fdf_map->rotation_z = 1;
+	fdf_map->x_offset = 0;
+	fdf_map->y_offset = 0;
+	fdf_map->zoom = 20;
 	fdf_map->flag = 1;
 }
 
 int	main(int argc, char **argv)
 {
-	t_map *fdf;
+	t_map	*fdf;
 
 	fdf = malloc(sizeof(t_map));
 	if (!fdf)
 		return (0);
-	if (argc != 2 || ft_strlen(argv[1]) <= 4 || strcmp(argv[1] + ft_strlen(argv[1]) - 4, ".fdf") != 0)
-	return (0);
+	if (argc != 2 || ft_strlen(argv[1]) <= 4 || 
+		ft_strcmp(argv[1] + ft_strlen(argv[1]) - 4, ".fdf") != 0)
+		return (0);
 	map_init(fdf, argv[1]);
 	ft_fill_matrix(fdf, argv[1]);
 	fdf->mlx = mlx_init();
 	fdf->mlx_win = mlx_new_window(fdf->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "FDF");
 	fdf->mlx_img = mlx_new_image(fdf->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	fdf->data = mlx_get_data_addr(fdf->mlx_img, &fdf->bpp, &fdf->size_line, &fdf->endian);
+	fdf->data = mlx_get_data_addr(fdf->mlx_img, &fdf->bpp, &fdf->size_line, 
+			&fdf->endian);
 	draw_map(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->mlx_img, 0, 0);
 	mlx_hook(fdf->mlx_win, 17, 0, close_window, NULL);
