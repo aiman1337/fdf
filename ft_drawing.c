@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:39:50 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/27 17:35:05 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/27 20:45:59 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,56 +14,73 @@
 
 void	draw_line_to_image(t_map *map, t_p f, t_p s, unsigned int color)
 {
-	int	dx = abs(s.x - f.x);
-	int	dy = abs(s.y - f.y);
-	int	sx = f.x < s.x ? 1 : -1;
-	int	sy = f.y < s.y ? 1 : -1;
-	int	err = dx - dy;
+	t_bresenham	b;
 
+	b = init_bresenham(f, s);
 	while (1)
 	{
 		put_pixel(map, f.x, f.y, color);
-		if (f.x == s.x && f.y == s.y)
-			break;
-		int e2 = 2 * err;
-		if (e2 > -dy)
-		{
-			err -= dy;
-			f.x += sx;
-		}
-		if (e2 < dx)
-		{
-			err += dx;
-			f.y += sy;
-		}
+		if (!bresenham_step(&f, s, &b))
+			break ;
 	}
 }
 
-t_p	iso_projection(t_map *map, int x, int y, int z)
+// Convert degrees to radians
+double degrees_to_radians(double degrees)
 {
-	t_p	p;
-	// Isometric projection
-	double rad_x = map->rotation_x * M_PI / 180.0;
-	double rad_y = map->rotation_y * M_PI / 180.0;
-	double rad_z = map->rotation_z * M_PI / 180.0;
-	// Apply rotation around X-axis
-	double y1 = y * cos(rad_x) - z * sin(rad_x);
-	double z1 = y * sin(rad_x) + z * cos(rad_x);
-	// Apply rotation around Y-axis
-	double x2 = x * cos(rad_y) + z1 * sin(rad_y);
-	double z2 = -x * sin(rad_y) + z1 * cos(rad_y);
-	// Apply rotation around Z-axis
-	double x3 = x2 * cos(rad_z) - y1 * sin(rad_z);
-	double y3 = x2 * sin(rad_z) + y1 * cos(rad_z);
-	// Isometric projection
-	p.x = (x3 - y3) * cos(30 * M_PI / 180.0) * map->zoom + map->x_offset;
-	p.y = (x3 + y3) * sin(30 * M_PI / 180.0) * map->zoom - z2 * 2 + map->y_offset;
+	return (degrees * M_PI / 180.0);
+}
+
+// Rotate around X-axis
+void rotate_x(double y, double z, double rad_x, t_rotation *rot)
+{
+	rot->y = y * cos(rad_x) - z * sin(rad_x);
+	rot->z = y * sin(rad_x) + z * cos(rad_x);
+}
+
+// Rotate around Y-axis
+void rotate_y(double x, double z, double rad_y, t_rotation *rot)
+{
+	rot->x = x * cos(rad_y) + z * sin(rad_y);
+	rot->z = -x * sin(rad_y) + z * cos(rad_y);
+}
+
+// Rotate around Z-axis
+void rotate_z(double x, double y, double rad_z, t_rotation *rot)
+{
+	rot->x = x * cos(rad_z) - y * sin(rad_z);
+	rot->y = x * sin(rad_z) + y * cos(rad_z);
+}
+
+// Perform the isometric projection
+t_p iso_projection(t_map *map, int x, int y, int z)
+{
+	t_p p;
+	double		rad_x;
+	double		rad_y;
+	double		rad_z;
+	t_rotation	rot; // Declare struct
+
+	// Initialize radians for rotation
+	rad_x = degrees_to_radians(map->rotation_x);
+	rad_y = degrees_to_radians(map->rotation_y);
+	rad_z = degrees_to_radians(map->rotation_z);
+
+	// Apply rotations
+	rotate_x((double)y, (double)z, rad_x, &rot);
+	rotate_y((double)x, rot.z, rad_y, &rot);
+	rotate_z(rot.x, rot.y, rad_z, &rot);
+
+	// Apply isometric projection
+	p.x = (rot.x - rot.y) * cos(degrees_to_radians(30)) * map->zoom + map->x_offset;
+	p.y = (rot.x + rot.y) * sin(degrees_to_radians(30)) * map->zoom - rot.z * 2 + map->y_offset;
+
 	return (p);
 }
 
 t_p	project(int x, int y, int z, t_map *map)
 {
-	t_p p;
+	t_p	p;
 
 	if (map->flag == 1)
 		p = iso_projection(map, x, y, z);
@@ -73,13 +90,13 @@ t_p	project(int x, int y, int z, t_map *map)
 		p.y = y * map->zoom + map->y_offset;
 	}
 	p.x += WINDOW_WIDTH / 2;
-	p.y += WINDOW_HEIGHT / 2;
-	return p;
+	p.y += WINDOW_HEIGHT / 3;
+	return (p);
 }
 
 void	draw_adjacent_lines(t_map *map, t_p p1, int x, int y)
 {
-	t_p p2;
+	t_p	p2;
 
 	if (x + 1 < map->width)
 	{
@@ -95,14 +112,14 @@ void	draw_adjacent_lines(t_map *map, t_p p1, int x, int y)
 
 void	draw_map(t_map *map)
 {
-	t_p p1;
+	t_p	p1;
 	int	x;
 	int	y;
 
 	y = 0;
 	ft_memset(map->data, 0, WINDOW_WIDTH * WINDOW_HEIGHT * (map->bpp / 8));
 	while (y < map->height)
-    {
+	{
 		x = 0;
 		while (x < map->width) 
 		{

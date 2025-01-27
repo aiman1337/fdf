@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:24 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/27 17:48:54 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/27 18:46:30 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,8 @@ int	main(int argc, char **argv)
 	mlx_hook(fdf->mlx_win, 17, 0, close_window, NULL);
 	mlx_key_hook(fdf->mlx_win, handle_keypress, fdf);
 	mlx_loop(fdf->mlx);
+	mlx_destroy_image(fdf->mlx, fdf->mlx_img);
+	mlx_destroy_window(fdf->mlx, fdf->mlx_win);
+	system("leaks fdf");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:03 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/27 17:46:26 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/27 20:36:38 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,22 @@
 #define Z_SCALE 2 // Adjust this value to control the height effect
 #define WINDOW_WIDTH 1700
 #define WINDOW_HEIGHT 1000
+
+typedef struct s_rotation
+{
+	double	x;
+	double	y;
+	double	z;
+}	t_rotation;
+
+typedef struct s_bresenham
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+}	t_bresenham;
 
 typedef struct s_point
 {
@@ -75,9 +91,15 @@ void			handle_moves(int keycode, t_map *map);
 int				handle_keypress(int keycode, t_map *map);
 void			draw_map(t_map *map);
 void			ft_fill_matrix(t_map *fdf, char *filename);
-int				ft_atoi(const char *str);
+unsigned int	ft_atoi(const char *str);
 int				ft_isdigit(int x);
 void			*ft_memset(void *s, int c, size_t n);
 char			**ft_split(char const *s, char c);
 int				ft_count_words(char const *str, char c);
 int				ft_strcmp(char *s1, char *s2);
+t_bresenham		init_bresenham(t_p f, t_p s);
+int				bresenham_step(t_p *f, t_p s, t_bresenham *b);
+double			degrees_to_radians(double degrees);
+void			rotate_x(double y, double z, double rad_x, t_rotation *result);
+void			rotate_y(double x, double z, double rad_y, t_rotation *result);
+void			rotate_z(double x, double y, double rad_z, t_rotation *result);

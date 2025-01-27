@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:52:40 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/27 17:56:09 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/27 18:41:15 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static void	parse_value(t_point *point, char *value)
 	l1 = ft_strlen(value);
 	if (ft_strchr(value, ','))
 	{
-		l2 = ft_strlen(coordinate);
 		coordinate = ft_substr(value, 0, l1 - ft_strlen(ft_strchr(value, ',')));
+		l2 = ft_strlen(coordinate);
 		color = ft_substr(value, l2 + 1, l1 - l2 - 1);
 		point->height = ft_atoi(coordinate);
 		if (color[0] == '0' && color[1] == 'x')
