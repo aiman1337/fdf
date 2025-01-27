@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 12:51:48 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/24 17:31:25 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/27 16:57:28 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	ft_count_words(char const *str, char c)
 	i = 0;
 	flag = 1;
 	counter = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 	{
 		if (str[i] == c)

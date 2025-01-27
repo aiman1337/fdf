@@ -6,13 +6,13 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:39:50 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/24 20:34:12 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/27 17:35:05 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	draw_line_to_image(char *data, t_p f, t_p s, int color, int size_line, int bpp)
+void	draw_line_to_image(t_map *map, t_p f, t_p s, unsigned int color)
 {
 	int	dx = abs(s.x - f.x);
 	int	dy = abs(s.y - f.y);
@@ -22,7 +22,7 @@ void	draw_line_to_image(char *data, t_p f, t_p s, int color, int size_line, int 
 
 	while (1)
 	{
-		put_pixel(data, f.x, f.y, color, size_line, bpp);
+		put_pixel(map, f.x, f.y, color);
 		if (f.x == s.x && f.y == s.y)
 			break;
 		int e2 = 2 * err;
@@ -84,12 +84,12 @@ void	draw_adjacent_lines(t_map *map, t_p p1, int x, int y)
 	if (x + 1 < map->width)
 	{
 		p2 = project(x + 1, y, map->point[y][x + 1].height, map);
-		draw_line_to_image(map->data, p1, p2, map->point[y][x].color, map->size_line, map->bpp);
+		draw_line_to_image(map, p1, p2, map->point[y][x].color);
 	}
 	if (y + 1 < map->height)
 	{
 		p2 = project(x, y + 1, map->point[y + 1][x].height, map);
-		draw_line_to_image(map->data, p1, p2, map->point[y][x].color, map->size_line, map->bpp);
+		draw_line_to_image(map, p1, p2, map->point[y][x].color);
 	}
 }
 

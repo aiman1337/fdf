@@ -6,11 +6,11 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:03 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/24 20:34:31 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/27 17:46:26 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx_macos/mlx.h"
+#include "../minilibx_macos/mlx.h"
 #include "get_next_line.h"
 #include <stdlib.h>
 #include <string.h>
@@ -24,17 +24,10 @@
 #define WINDOW_WIDTH 1700
 #define WINDOW_HEIGHT 1000
 
-typedef struct s_pixel_info
-{
-    int     size_line;
-    int     color;
-    int     bpp;
-}	t_pixel_info;
-
 typedef struct s_point
 {
-	int	height;
-	int	color;
+	int				height;
+	unsigned int	color;
 }	t_point;
 
 typedef struct s_p
@@ -65,26 +58,26 @@ typedef struct s_map
 }	t_map;
 
 // Function prototypes
-int		get_map_height(char *filename);
-int		get_map_width(char *filename);
-void	ft_fill_matrix(t_map *fdf, char *filename);
-void	put_pixel(char *data, int x, int y, int color, int size_line, int bpp);
-void	draw_line_to_image(char *data, t_p f, t_p s, int color, int size_line, int bpp);
-t_p		project(int x, int y, int z, t_map *map);
-void	draw_map(t_map *map);
-int		handle_keypress(int keycode, t_map *map);
-int		close_window(void);
-int		ft_atoi_hex(const char *str);
-void	handle_projection(int keycode, t_map *map);
-void	handle_rotation(int keycode, t_map *map);
-void	handle_zoom(int keycode, t_map *map);
-void	handle_moves(int keycode, t_map *map);
-int		handle_keypress(int keycode, t_map *map);
-void	draw_map(t_map *map);
-void	ft_fill_matrix(t_map *fdf, char *filename);
-int		ft_atoi(const char *str);
-int		ft_isdigit(int x);
-void	*ft_memset(void *s, int c, size_t n);
-char	**ft_split(char const *s, char c);
-int		ft_count_words(char const *str, char c);
-int		ft_strcmp(char *s1, char *s2);
+int				get_map_height(char *filename);
+int				get_map_width(char *filename);
+void			ft_fill_matrix(t_map *fdf, char *filename);
+void			put_pixel(t_map *map, int x, int y, unsigned int color);
+void			draw_line_to_image(t_map *mp, t_p f, t_p s, unsigned int color);
+t_p				project(int x, int y, int z, t_map *map);
+void			draw_map(t_map *map);
+int				handle_keypress(int keycode, t_map *map);
+int				close_window(void);
+unsigned int	ft_atoi_hex(const char *str);
+void			handle_projection(int keycode, t_map *map);
+void			handle_rotation(int keycode, t_map *map);
+void			handle_zoom(int keycode, t_map *map);
+void			handle_moves(int keycode, t_map *map);
+int				handle_keypress(int keycode, t_map *map);
+void			draw_map(t_map *map);
+void			ft_fill_matrix(t_map *fdf, char *filename);
+int				ft_atoi(const char *str);
+int				ft_isdigit(int x);
+void			*ft_memset(void *s, int c, size_t n);
+char			**ft_split(char const *s, char c);
+int				ft_count_words(char const *str, char c);
+int				ft_strcmp(char *s1, char *s2);

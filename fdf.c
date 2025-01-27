@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:24 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/24 20:35:14 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/27 17:48:54 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,6 @@ int	close_window(void)
 {
 	system("leaks fdf");
 	exit(0);
-}
-
-void	put_pixel(char *data, int x, int y, int color, int size_line, int bpp)
-{
-	int	offset;
-
-	if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
-	{
-		offset = (y * size_line) + (x * (bpp / 8));
-		*(int *)(data + offset) = color;
-	}
 }
 
 void	map_init(t_map *fdf_map, char *argv)

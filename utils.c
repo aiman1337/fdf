@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_hex.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/18 15:47:54 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/27 17:32:02 by ahouass          ###   ########.fr       */
+/*   Created: 2025/01/27 17:00:27 by ahouass           #+#    #+#             */
+/*   Updated: 2025/01/27 17:35:32 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-unsigned int	ft_atoi_hex(const char *str)
+void	put_pixel(t_map *map, int x, int y, unsigned int color)
 {
-	unsigned int	res;
+	int	offset;
 
-	res = 0;
-	while (*str)
+	if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
 	{
-		if (ft_isdigit(*str))
-			res = res * 16 + (*str - '0');
-		else if (*str >= 'a' && *str <= 'f')
-			res = res * 16 + (*str - 'a' + 10);
-		else if (*str >= 'A' && *str <= 'F')
-			res = res * 16 + (*str - 'A' + 10);
-		else
-			break ;
-		str++;
+		offset = (y * map->size_line) + (x * (map->bpp / 8));
+		*(int *)(map->data + offset) = color;
 	}
-	return (res);
 }
