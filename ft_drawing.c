@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:39:50 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/27 20:45:59 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/28 18:41:25 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,56 +25,22 @@ void	draw_line_to_image(t_map *map, t_p f, t_p s, unsigned int color)
 	}
 }
 
-// Convert degrees to radians
-double degrees_to_radians(double degrees)
+t_p	iso_projection(t_map *map, int x, int y, int z)
 {
-	return (degrees * M_PI / 180.0);
-}
-
-// Rotate around X-axis
-void rotate_x(double y, double z, double rad_x, t_rotation *rot)
-{
-	rot->y = y * cos(rad_x) - z * sin(rad_x);
-	rot->z = y * sin(rad_x) + z * cos(rad_x);
-}
-
-// Rotate around Y-axis
-void rotate_y(double x, double z, double rad_y, t_rotation *rot)
-{
-	rot->x = x * cos(rad_y) + z * sin(rad_y);
-	rot->z = -x * sin(rad_y) + z * cos(rad_y);
-}
-
-// Rotate around Z-axis
-void rotate_z(double x, double y, double rad_z, t_rotation *rot)
-{
-	rot->x = x * cos(rad_z) - y * sin(rad_z);
-	rot->y = x * sin(rad_z) + y * cos(rad_z);
-}
-
-// Perform the isometric projection
-t_p iso_projection(t_map *map, int x, int y, int z)
-{
-	t_p p;
+	t_p			p;
 	double		rad_x;
 	double		rad_y;
 	double		rad_z;
-	t_rotation	rot; // Declare struct
+	t_rotation	rot;
 
-	// Initialize radians for rotation
 	rad_x = degrees_to_radians(map->rotation_x);
 	rad_y = degrees_to_radians(map->rotation_y);
 	rad_z = degrees_to_radians(map->rotation_z);
-
-	// Apply rotations
 	rotate_x((double)y, (double)z, rad_x, &rot);
 	rotate_y((double)x, rot.z, rad_y, &rot);
 	rotate_z(rot.x, rot.y, rad_z, &rot);
-
-	// Apply isometric projection
-	p.x = (rot.x - rot.y) * cos(degrees_to_radians(30)) * map->zoom + map->x_offset;
-	p.y = (rot.x + rot.y) * sin(degrees_to_radians(30)) * map->zoom - rot.z * 2 + map->y_offset;
-
+	p.x = (rot.x - rot.y) * cos(ANGLE) * map->zoom + map->x_offset;
+	p.y = (rot.x + rot.y) * sin(ANGLE) * map->zoom - rot.z * 2 + map->y_offset;
 	return (p);
 }
 

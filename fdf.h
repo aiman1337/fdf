@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:03 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/27 20:36:38 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/28 18:37:23 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <fcntl.h>
 #include <math.h>
 #define SCALE 20
-#define ISO_ANGLE 30 // Isometric angle
+#define ANGLE 0.523599
 #define Z_SCALE 2 // Adjust this value to control the height effect
 #define WINDOW_WIDTH 1700
 #define WINDOW_HEIGHT 1000

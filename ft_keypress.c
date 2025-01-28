@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:11:09 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/27 17:10:57 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/28 18:45:32 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	handle_keypress(int keycode, t_map *map)
 {
 	if (keycode == 53)
 	{
-		system("leaks fdf");
 		exit(0);
 	}
 	handle_projection(keycode, map);

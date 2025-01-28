@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:24 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/27 18:46:30 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/28 18:45:29 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	get_map_width(char *filename)
 
 int	close_window(void)
 {
-	system("leaks fdf");
 	exit(0);
 }
 
