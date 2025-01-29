@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:24 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/28 18:45:29 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/29 17:40:53 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	map_init(t_map *fdf_map, char *argv)
 	fdf_map->y_offset = 0;
 	fdf_map->zoom = 20;
 	fdf_map->flag = 1;
+	fdf_map->auto_rotate = 0;
 }
 
 int	main(int argc, char **argv)
@@ -90,9 +91,9 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->mlx_img, 0, 0);
 	mlx_hook(fdf->mlx_win, 17, 0, close_window, NULL);
 	mlx_key_hook(fdf->mlx_win, handle_keypress, fdf);
+	mlx_loop_hook(fdf->mlx, ft_auto_rotate, fdf);
 	mlx_loop(fdf->mlx);
 	mlx_destroy_image(fdf->mlx, fdf->mlx_img);
 	mlx_destroy_window(fdf->mlx, fdf->mlx_win);
-	system("leaks fdf");
 	return (0);
 }

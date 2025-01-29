@@ -6,9 +6,12 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:03 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/28 18:37:23 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/29 17:51:48 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef FDF_H
+# define FDF_H
 
 #include "../minilibx_macos/mlx.h"
 #include "get_next_line.h"
@@ -71,6 +74,7 @@ typedef struct s_map
 	int		rotation_y;
 	int		rotation_z;
 	int		flag;
+	int		auto_rotate;
 }	t_map;
 
 // Function prototypes
@@ -103,3 +107,6 @@ double			degrees_to_radians(double degrees);
 void			rotate_x(double y, double z, double rad_x, t_rotation *result);
 void			rotate_y(double x, double z, double rad_y, t_rotation *result);
 void			rotate_z(double x, double y, double rad_z, t_rotation *result);
+int				ft_auto_rotate(t_map *map);
+
+#endif

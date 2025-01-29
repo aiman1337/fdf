@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 17:34:09 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/28 17:35:19 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/29 17:51:15 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,16 @@ void	rotate_z(double x, double y, double rad_z, t_rotation *rot)
 {
 	rot->x = x * cos(rad_z) - y * sin(rad_z);
 	rot->y = x * sin(rad_z) + y * cos(rad_z);
+}
+
+int	ft_auto_rotate(t_map *map)
+{
+	if (map->auto_rotate)
+	{
+		map->rotation_x += 1;
+		map->rotation_y += 1;
+		map->rotation_z += 1;
+		draw_map(map);
+	}
+	return (0);
 }

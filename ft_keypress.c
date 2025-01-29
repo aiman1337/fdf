@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:11:09 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/28 18:45:32 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/29 17:44:30 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	handle_rotation(int keycode, t_map *map)
 	if (keycode == 12)
 		map->rotation_z -= 3;
 	if (keycode == 14)
-		map->rotation_z += 3;
+		map->rotation_z += 3;	
 }
 
 void	handle_zoom(int keycode, t_map *map)
@@ -64,6 +64,8 @@ int	handle_keypress(int keycode, t_map *map)
 	{
 		exit(0);
 	}
+	if (keycode == 15)
+		map->auto_rotate = !map->auto_rotate;
 	handle_projection(keycode, map);
 	handle_rotation(keycode, map);
 	handle_zoom(keycode, map);
