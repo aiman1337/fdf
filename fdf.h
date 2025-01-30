@@ -6,26 +6,26 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:03 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/29 17:51:48 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/30 18:10:12 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-#include "../minilibx_macos/mlx.h"
-#include "get_next_line.h"
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <math.h>
-#define SCALE 20
-#define ANGLE 0.523599
-#define Z_SCALE 2 // Adjust this value to control the height effect
-#define WINDOW_WIDTH 1700
-#define WINDOW_HEIGHT 1000
+# include "../minilibx_macos/mlx.h"
+# include "get_next_line.h"
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <math.h>
+# define SCALE 20
+# define ANGLE 0.523599
+# define Z_SCALE 2 // Adjust this value to control the height effect
+# define WINDOW_WIDTH 1700
+# define WINDOW_HEIGHT 1000
 
 typedef struct s_rotation
 {
@@ -86,7 +86,7 @@ void			draw_line_to_image(t_map *mp, t_p f, t_p s, unsigned int color);
 t_p				project(int x, int y, int z, t_map *map);
 void			draw_map(t_map *map);
 int				handle_keypress(int keycode, t_map *map);
-int				close_window(void);
+int				close_window(t_map *map);
 unsigned int	ft_atoi_hex(const char *str);
 void			handle_projection(int keycode, t_map *map);
 void			handle_rotation(int keycode, t_map *map);
@@ -108,5 +108,6 @@ void			rotate_x(double y, double z, double rad_x, t_rotation *result);
 void			rotate_y(double x, double z, double rad_y, t_rotation *result);
 void			rotate_z(double x, double y, double rad_z, t_rotation *result);
 int				ft_auto_rotate(t_map *map);
+void			ft_free_map(t_point **point, int height);
 
 #endif

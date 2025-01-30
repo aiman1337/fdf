@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:52:40 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/27 18:41:15 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/01/30 17:43:47 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ void	ft_fill_matrix(t_map *fdf, char *filename)
 
 	allocate_points(fdf);
 	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return ;
 	row = 0;
 	line = get_next_line(fd);
 	while (line)
