@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:00:27 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/30 18:12:00 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/02/05 20:04:47 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	close_window(t_map *fdf)
 	mlx_destroy_image(fdf->mlx, fdf->mlx_img);
 	mlx_destroy_window(fdf->mlx, fdf->mlx_win);
 	ft_free_map(fdf->point, fdf->height);
+	free(fdf);
 	exit(0);
 }
 

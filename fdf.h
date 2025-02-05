@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:03 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/30 18:10:12 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/02/05 19:05:09 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,25 @@
 # include <math.h>
 # define SCALE 20
 # define ANGLE 0.523599
-# define Z_SCALE 2 // Adjust this value to control the height effect
+# define Z_SCALE 2
 # define WINDOW_WIDTH 1700
 # define WINDOW_HEIGHT 1000
+# define KEY_P 35
+# define KEY_I 34
+# define KEY_W 13
+# define KEY_S 1
+# define KEY_A 0
+# define KEY_D 2
+# define KEY_Q 12
+# define KEY_E 14
+# define PLUS_KEY 		69
+# define MINUS_KEY 		78
+# define LEFT_ARROW 	123
+# define RIGHT_ARROW 	124
+# define UP_ARROW 		125
+# define DOWN_ARROW 	126
+# define ESC_KEY 		53
+# define R_KEY			15
 
 typedef struct s_rotation
 {

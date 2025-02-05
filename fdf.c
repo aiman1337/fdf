@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:24 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/30 18:12:09 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/02/05 20:10:14 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	main(int argc, char **argv)
 		return (0);
 	if (argc != 2 || ft_strlen(argv[1]) <= 4 || 
 		ft_strcmp(argv[1] + ft_strlen(argv[1]) - 4, ".fdf") != 0)
-		return (0);
+		exit(EXIT_FAILURE);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		exit(EXIT_FAILURE);
