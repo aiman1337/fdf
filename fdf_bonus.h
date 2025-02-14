@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:03 by ahouass           #+#    #+#             */
-/*   Updated: 2025/02/14 14:45:04 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/02/10 19:18:13 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
 # define ANGLE 0.523599
-# define WINDOW_WIDTH 2100
-# define WINDOW_HEIGHT 1300
+# define WINDOW_WIDTH 1700
+# define WINDOW_HEIGHT 1000
 # define KEY_P 35
 # define KEY_I 34
 # define KEY_W 13
@@ -68,11 +69,6 @@ typedef struct s_p
 	int	y;
 }	t_p;
 
-typedef struct s_scale {
-    double scale_factor;
-    double z_scale;
-} t_scale;
-
 typedef struct s_map
 {
 	t_point	**point;
@@ -93,7 +89,6 @@ typedef struct s_map
 	int		rotation_z;
 	int		flag;
 	int		auto_rotate;
-	t_scale scale;
 }	t_map;
 
 // Function prototypes
@@ -128,7 +123,5 @@ void			rotate_y(double x, double z, double rad_y, t_rotation *result);
 void			rotate_z(double x, double y, double rad_z, t_rotation *result);
 int				ft_auto_rotate(t_map *map);
 void			ft_free_map(t_point **point, int height);
-
-void			calculate_scale(t_map *map);
 
 #endif

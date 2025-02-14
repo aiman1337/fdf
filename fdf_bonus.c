@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   fdf_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:24 by ahouass           #+#    #+#             */
-/*   Updated: 2025/02/14 13:54:27 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/02/14 12:48:03 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ void	map_init(t_map *fdf_map, char *argv)
 {
 	fdf_map->height = get_map_height(argv);
 	fdf_map->width = get_map_width(argv);
+	fdf_map->rotation_x = 1;
+	fdf_map->rotation_y = 1;
+	fdf_map->rotation_z = 1;
+	fdf_map->x_offset = 0;
+	fdf_map->y_offset = 0;
+	fdf_map->zoom = 20;
+	fdf_map->flag = 1;
+	fdf_map->auto_rotate = 0;
 }
 
 void	ft_mlx_init(t_map *fdf)
@@ -81,12 +89,13 @@ int	main(int argc, char **argv)
 	map_init(&fdf, argv[1]);
 	ft_mlx_init(&fdf);
 	ft_fill_matrix(&fdf, argv[1]);
-	calculate_scale(&fdf);
 	draw_map(&fdf);
 	mlx_put_image_to_window((&fdf)->mlx, (&fdf)->mlx_win, 
 		(&fdf)->mlx_img, 0, 0);
 	mlx_hook((&fdf)->mlx_win, 17, 0, close_window, &fdf);
 	mlx_key_hook((&fdf)->mlx_win, handle_keypress, &fdf);
+	mlx_loop_hook((&fdf)->mlx, ft_auto_rotate, &fdf);
 	mlx_loop((&fdf)->mlx);
 	return (0);
 }
+
