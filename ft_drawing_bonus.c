@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_drawing.c                                       :+:      :+:    :+:   */
+/*   ft_drawing_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:39:50 by ahouass           #+#    #+#             */
-/*   Updated: 2025/02/12 13:25:00 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:34:55 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	draw_line_to_image(t_map *map, t_p f, t_p s, unsigned int color)
 {
 	t_bresenham	b;
 
 	b = init_bresenham(f, s);
+	if (b.dy > b.dx)
+	{
+		ft_swap(&b);
+		b.swap_axes = 1;
+	}
+	b.err = 2 * b.dy - b.dx;
 	while (1)
 	{
 		put_pixel(map, f.x, f.y, color);
-		if (!bresenham_step(&f, s, &b))
+		if (f.x == s.x && f.y == s.y)
 			break ;
+		bresenham_step(&f, &b);
 	}
 }
 

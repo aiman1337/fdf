@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:24 by ahouass           #+#    #+#             */
-/*   Updated: 2025/02/14 13:54:27 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/02/17 19:51:41 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int	main(int argc, char **argv)
 	map_init(&fdf, argv[1]);
 	ft_mlx_init(&fdf);
 	ft_fill_matrix(&fdf, argv[1]);
-	calculate_scale(&fdf);
 	draw_map(&fdf);
 	mlx_put_image_to_window((&fdf)->mlx, (&fdf)->mlx_win, 
 		(&fdf)->mlx_img, 0, 0);

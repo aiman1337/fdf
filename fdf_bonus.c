@@ -6,11 +6,11 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:24 by ahouass           #+#    #+#             */
-/*   Updated: 2025/02/14 12:48:03 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/02/17 18:13:45 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 int	get_map_height(char *filename)
 {
@@ -98,4 +98,3 @@ int	main(int argc, char **argv)
 	mlx_loop((&fdf)->mlx);
 	return (0);
 }
-

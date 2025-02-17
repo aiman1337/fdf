@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:03 by ahouass           #+#    #+#             */
-/*   Updated: 2025/02/10 19:18:13 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:58:04 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 
 # include "../minilibx_macos/mlx.h"
-# include "get_next_line.h"
 # include <stdlib.h>
-# include <string.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
 # define ANGLE 0.523599
@@ -41,6 +38,10 @@
 # define ESC_KEY 		53
 # define R_KEY			15
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
 typedef struct s_rotation
 {
 	double	x;
@@ -55,6 +56,7 @@ typedef struct s_bresenham
 	int	sx;
 	int	sy;
 	int	err;
+	int	swap_axes;
 }	t_bresenham;
 
 typedef struct s_point
@@ -94,12 +96,9 @@ typedef struct s_map
 // Function prototypes
 int				get_map_height(char *filename);
 int				get_map_width(char *filename);
-void			ft_fill_matrix(t_map *fdf, char *filename);
 void			put_pixel(t_map *map, int x, int y, unsigned int color);
 void			draw_line_to_image(t_map *mp, t_p f, t_p s, unsigned int color);
 t_p				project(int x, int y, int z, t_map *map);
-void			draw_map(t_map *map);
-int				handle_keypress(int keycode, t_map *map);
 int				close_window(t_map *map);
 unsigned int	ft_atoi_hex(const char *str);
 void			handle_projection(int keycode, t_map *map);
@@ -116,12 +115,19 @@ char			**ft_split(char const *s, char c);
 int				ft_count_words(char const *str, char c);
 int				ft_strcmp(char *s1, char *s2);
 t_bresenham		init_bresenham(t_p f, t_p s);
-int				bresenham_step(t_p *f, t_p s, t_bresenham *b);
+int				bresenham_step(t_p *f, t_bresenham *b);
 double			degrees_to_radians(double degrees);
 void			rotate_x(double y, double z, double rad_x, t_rotation *result);
 void			rotate_y(double x, double z, double rad_y, t_rotation *result);
 void			rotate_z(double x, double y, double rad_z, t_rotation *result);
 int				ft_auto_rotate(t_map *map);
 void			ft_free_map(t_point **point, int height);
+void			ft_swap(t_bresenham *b);
+char			*get_next_line(int fd);
+char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strdup(const char *s);
+size_t			ft_strlen(const char *str);
+char			*ft_strchr(const char *s, int c);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rotate.c                                        :+:      :+:    :+:   */
+/*   ft_rotate_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 17:34:09 by ahouass           #+#    #+#             */
-/*   Updated: 2025/01/30 18:10:45 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:53:38 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 double	degrees_to_radians(double degrees)
 {
@@ -25,8 +25,8 @@ void	rotate_x(double y, double z, double rad_x, t_rotation *rot)
 
 void	rotate_y(double x, double z, double rad_y, t_rotation *rot)
 {
-	rot->x = x * cos(rad_y) + z * sin(rad_y);
-	rot->z = -x * sin(rad_y) + z * cos(rad_y);
+	rot->z = z * cos(rad_y) - x * sin(rad_y);
+	rot->x = z * sin(rad_y) + x * cos(rad_y);
 }
 
 void	rotate_z(double x, double y, double rad_z, t_rotation *rot)
