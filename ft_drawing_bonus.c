@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:39:50 by ahouass           #+#    #+#             */
-/*   Updated: 2025/02/17 17:34:55 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/02/20 17:36:06 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_p	project(int x, int y, int z, t_map *map)
 		p.y = y * map->zoom + map->y_offset;
 	}
 	p.x += WINDOW_WIDTH / 2;
-	p.y += WINDOW_HEIGHT / 3;
+	p.y += WINDOW_HEIGHT / 2;
 	return (p);
 }
 

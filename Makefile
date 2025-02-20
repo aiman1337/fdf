@@ -1,4 +1,5 @@
 NAME		= fdf
+NAME_BNS	= fdf_bonus
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
@@ -21,7 +22,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 
 bonus: $(OBJS_BNS)
-	$(CC) $(CFLAGS) $(OBJS_BNS) $(LIBS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS_BNS) $(LIBS) -o $(NAME_BNS)
 	@touch bonus
 
 %_bonus.o: %_bonus.c fdf_bonus.h
@@ -34,7 +35,7 @@ clean:
 	rm -f $(OBJS) $(OBJS_BNS) bonus
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(NAME_BNS)
 
 re: fclean all
 
