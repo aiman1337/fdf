@@ -6,7 +6,7 @@
 /*   By: ahouass <ahouass@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:50:24 by ahouass           #+#    #+#             */
-/*   Updated: 2025/02/17 18:13:45 by ahouass          ###   ########.fr       */
+/*   Updated: 2025/03/03 14:09:35 by ahouass          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,12 @@ int	get_map_width(char *filename)
 	width = ft_count_words(line, ' ');
 	while (line)
 	{
-		if (width > ft_count_words(line, ' '))
-			width = ft_count_words(line, ' ');
+		if (width != ft_count_words(line, ' '))
+		{
+			write(2, "width is not handled properly\n", 30);
+			free(line);
+			exit(1);
+		}
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -81,7 +85,10 @@ int	main(int argc, char **argv)
 
 	if (argc != 2 || ft_strlen(argv[1]) <= 4 || 
 		ft_strcmp(argv[1] + ft_strlen(argv[1]) - 4, ".fdf") != 0)
+	{
+		write(2, "Not valid arguments\n", 21);
 		exit(EXIT_FAILURE);
+	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		exit(EXIT_FAILURE);
